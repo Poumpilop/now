@@ -2,14 +2,14 @@
 
 import { lucia } from "@/auth";
 import prisma from "@/lib/prisma";
-import { loginSchema, signUpSchema, SignUpValues } from "@/lib/validation";
+import { loginSchema, LoginValues } from "@/lib/validation";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import {verify} from "@node-rs/argon2";
+import { verify } from "@node-rs/argon2";
 
 export async function login(
-    credentials: SignUpValues
+    credentials: LoginValues
 ): Promise<{error: string}> {
     try {
         const {username, password} = loginSchema.parse(credentials);
