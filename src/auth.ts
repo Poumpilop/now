@@ -40,8 +40,8 @@ interface DatabaseUserAttributes {
 }
 
 export const validateRequest = cache(
-    async(): Promise<
-        {user: User, session: Session } | { user: null, session: null }
+    async (): Promise<
+        {user: User; session: Session } | { user: null; session: null }
     > => {
         const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
         
@@ -76,4 +76,4 @@ export const validateRequest = cache(
 
         return result;
     },
-)
+);
