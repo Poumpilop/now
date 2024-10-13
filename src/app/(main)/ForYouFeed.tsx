@@ -1,6 +1,7 @@
 "use client"
 
 import Post from "@/components/posts/editor/Post";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import kyInstance from "@/lib/ky";
 import { PostData } from "@/lib/types"
 import { useQuery } from "@tanstack/react-query"
@@ -22,9 +23,9 @@ export default function ForYouFeed() {
         </p>
     }
 
-    return <div className="space-y-5">
+    return <ScrollArea className="h-[calc(100vh-300px)]">
         {query.data.map(post => (
             <Post key={post.id} post={post} />
         ))}
-    </div>
+    </ScrollArea>
 }

@@ -4,7 +4,7 @@ import { useSession } from "@/app/(main)/SessionProvider"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import UserAvatar from "./UserAvatar";
 import Link from "next/link";
-import { LogOutIcon, Monitor, Moon, Sun, UserIcon } from "lucide-react";
+import { LogOutIcon, Monitor, Moon, Shield, Sun, UserIcon } from "lucide-react";
 import { logout } from "@/app/(auth)/actions";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
@@ -28,40 +28,31 @@ export default function UserButton({className}: UserButtonProps) {
                 <UserAvatar avatarUrl={user.avatarUrl} size={40} />
             </button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
-            <DropdownMenuLabel>
-                Connecté en tant que @{user.displayName}
-            </DropdownMenuLabel>
+        <DropdownMenuContent className="w-56" align="end">
+        <DropdownMenuLabel>
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">Connecté en tant que</p>
+                    <p className="text-xs leading-none text-muted-foreground">{user.displayName}</p>
+                  </div>
+                </DropdownMenuLabel>
             <DropdownMenuSeparator />
+            {user.isAdmin && (
+                <>
+                <Link href={`/admin`}>
+                <DropdownMenuItem>
+                    <Shield  className="mr-2 h-4 w-4"/>
+                    Administration
+                </DropdownMenuItem>
+            </Link>
+            </>
+            ) }
+            
             <Link href={`/users/${user.username}`}>
                 <DropdownMenuItem>
-                    <UserIcon className="mr-2 size-4"/>
+                    <UserIcon className="mr-2 h-4 w-4"/>
                     Profile
                 </DropdownMenuItem>
             </Link>
-            <DropdownMenuSeparator />
-            <DropdownMenuSub>
-                <DropdownMenuSubTrigger>
-                    <Monitor className="mr-2 size-4" />
-                    Theme
-                </DropdownMenuSubTrigger>
-                <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                        <DropdownMenuItem onClick={() => setTheme("system")}>
-                            <Monitor className="mr-2 size-4" />
-                            Default
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setTheme("light")}>
-                            <Sun className="mr-2 size-4" />
-                            Light
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setTheme("dark")}>
-                            <Moon className="mr-2 size-4" />
-                            Dark
-                        </DropdownMenuItem>
-                    </DropdownMenuSubContent>
-                </DropdownMenuPortal>
-            </DropdownMenuSub>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => {
                 queryClient.clear();

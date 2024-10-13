@@ -26,6 +26,7 @@ model User {
   bio          String?
   sessions     Session[]
   posts         Post[]
+  isAdmin      Boolean?  @default(false)
   
   createdAt DateTime @default(now())
 
