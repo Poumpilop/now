@@ -32,13 +32,13 @@ export default function Post({ post }: PostProps) {
             <p className="mt-1 text-sm break-words">{post.content}</p>
             <div className="mt-3 flex items-center space-x-4">
             <Button variant="ghost" size="sm" className="text-muted-foreground px-0">
-                <MessageCircle className="h-4 w-4 mr-1" />
-                <span className="text-xs">1</span>
-            </Button>
-            <Button variant="ghost" size="sm" className="text-muted-foreground px-0">
                 <Heart className="h-4 w-4 mr-1" />
                 <span className="text-xs">5</span>
             </Button>
+            <Button variant="ghost" size="sm" className="text-muted-foreground px-0">
+                <MessageCircle className="h-4 w-4 mr-1" />
+                <span className="text-xs">1</span>
+            </Button>           
             <Button variant="ghost" size="sm" className="text-muted-foreground px-0">
                 <Share className="h-4 w-4" />
             </Button>

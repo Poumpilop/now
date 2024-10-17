@@ -2,9 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Bell, Home, MapPin, Menu, MessageCircle, Search, Settings, User } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import Link from "next/link";
 import UserButton from "@/components/UserButton";
 import ThemeButton from "@/components/ThemeButton";
+import { redirect } from "next/navigation";
 
 export default function Navbar() {
     return <header className="sticky top-0 z-10 bg-background border-b border-border p-4">
@@ -32,14 +32,6 @@ export default function Navbar() {
             <Button variant="ghost" className="justify-start">
               <Bell className="mr-2 h-4 w-4" />
               Notifications
-            </Button>
-            <Button variant="ghost" className="justify-start">
-              <User className="mr-2 h-4 w-4" />
-              Profil
-            </Button>
-            <Button variant="ghost" className="justify-start">
-              <Settings className="mr-2 h-4 w-4" />
-              Paramètres
             </Button>
           </nav>
         </SheetContent>

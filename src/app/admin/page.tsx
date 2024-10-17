@@ -8,23 +8,6 @@ import { validateRequest } from "@/auth"
 import { getUserDataSelect } from "@/lib/types"
 
 export default async function Page() {
-    //const [searchTerm, setSearchTerm] = useState("")
-  
-    /*const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchTerm(event.target.value)
-    }*/
-  
-    /*const toggleAdminStatus = (userId: number) => {
-      setUsers(users.map(user => 
-        user.id === userId ? { ...user, isAdmin: !user.isAdmin } : user
-      ))
-    }
-
-    const toggleVerifiedStatus = (userId: number) => {
-        setUsers(users.map(user => 
-          user.id === userId ? { ...user, isVerified: !user.isVerified } : user
-        ))
-      }*/
   
     return (
       <div className="container mx-auto p-4">
@@ -57,7 +40,7 @@ async function GetAllUsers() {
                 id: user?.id,
             },
         },
-        select: getUserDataSelect,
+        select: getUserDataSelect(user.id),
         take: 5,
     });
 

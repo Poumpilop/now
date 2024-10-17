@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useState } from "react";
 import { Slider } from "@/components/ui/slider"
+import { Button } from "@/components/ui/button";
 
 
 export default function RightSideBar() {
@@ -17,7 +18,7 @@ export default function RightSideBar() {
               </CardHeader>
               <CardContent className="pt-0">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm">Rayon de découverte :</span>
+                  <span className="text-sm">Voir les messages dans un rayon de :</span>
                   <span className="font-medium">{postRadius} km</span>
                 </div>
                 <Slider
@@ -28,6 +29,7 @@ export default function RightSideBar() {
                   step={5}
                   className="w-full"
                 />
+                <Button className="mt-5 w-full">Sauvegarder</Button>
               </CardContent>
             </Card>
             <Card>
