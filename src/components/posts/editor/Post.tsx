@@ -1,17 +1,22 @@
+"use client";
+
 import { PostData } from "@/lib/types"
 import { formatRelativeData } from "@/lib/utils"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Heart, MapPin, MessageCircle, Share } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
+import LikeButton from "./LikeButton"
+import { useSession } from "@/app/(main)/SessionProvider"
 
 interface PostProps {
     post: PostData
 }
 
 export default function Post({ post }: PostProps) {
+    const { user } = useSession();
+
     return (
         <>
         <Card key={post.id} className=" max-w-full border-none shadow-none">
@@ -31,12 +36,24 @@ export default function Post({ post }: PostProps) {
             </div>
             <p className="mt-1 text-sm break-words">{post.content}</p>
             <div className="mt-3 flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="text-muted-foreground px-0">
-                <Heart className="h-4 w-4 mr-1" />
-                <span className="text-xs">5</span>
-            </Button>
-            <Button variant="ghost" size="sm" className="text-muted-foreground px-0">
-                <MessageCircle className="h-4 w-4 mr-1" />
+            
+            <LikeButton 
+                postId={post.id}
+                initialState={{
+                    likes: post._count.likes,
+                    isLikedByUser: post.likes.some(like => like.userId === user.id),
+                }}
+            />
+
+            <Button
+                variant="link"
+                size="sm"
+                className="text-muted-foreground p-0 h-auto hover:no-underline hover:bg-transparent"
+                >
+                <MessageCircle 
+                    className={`h-4 w-4 mr-1 transition-colors duration-200`}
+                
+                />
                 <span className="text-xs">1</span>
             </Button>           
             <Button variant="ghost" size="sm" className="text-muted-foreground px-0">

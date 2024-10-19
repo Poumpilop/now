@@ -22,16 +22,32 @@ export type UserData = Prisma.UserGetPayload<{
   select: ReturnType<typeof getUserDataSelect>;
 }>;
 
-export const postDataInclude = {
-        user: {
-          select: {
-            username: true,
-            displayName: true,
-            avatarUrl: true,
-          },
+export function getPostDataInclude(loggedInUserId: string) {
+  return {
+    user: {
+      select: getUserDataSelect(loggedInUserId),
+      },
+      likes: {
+        where: {
+            userId: loggedInUserId,
         },
-} satisfies Prisma.PostInclude;
+        select: {
+            userId: true
+        }
+    },
+    _count: {
+        select: {
+            likes: true
+        },
+    },
+  } satisfies Prisma.PostInclude;
+}
 
 export type PostData = Prisma.PostGetPayload<{
-    include: typeof postDataInclude
+    include: ReturnType<typeof getPostDataInclude>;
 }>;
+
+export interface LikeInfo {
+  likes: number;
+  isLikedByUser: boolean
+}

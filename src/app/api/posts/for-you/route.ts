@@ -1,6 +1,6 @@
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
-import { postDataInclude } from "@/lib/types";
+import { getPostDataInclude } from "@/lib/types";
 
 export async function GET() {
     try {
@@ -11,7 +11,7 @@ export async function GET() {
         }
 
         const posts = await prisma.post.findMany({
-            include: postDataInclude,
+            include: getPostDataInclude(user.id),
             orderBy: {createdAt: "desc"}
         });
 
