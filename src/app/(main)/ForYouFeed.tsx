@@ -7,10 +7,24 @@ import { PostData } from "@/lib/types"
 import { useQuery } from "@tanstack/react-query"
 import { Loader2 } from "lucide-react";
 
-export default function ForYouFeed() {
-    const query = useQuery<PostData[]>( {
-        queryKey: ["post-feed", "for-you"],
-        queryFn: kyInstance.get("/api/posts/for-you").json<PostData[]>
+
+interface ForYouFeedProps {
+    displayName?: string; // On utilise maintenant le username pour identifier l'utilisateur
+  }
+
+export default function ForYouFeed({ displayName }: ForYouFeedProps) {
+
+    const query = useQuery<PostData[]>({
+        queryKey: ["post-feed", displayName || "for-you"],
+        queryFn: () => {
+            const endpoint = displayName 
+                ? `api/posts/user/${displayName}` 
+                : "api/posts/for-you";
+            
+            return kyInstance.get(endpoint, {
+                credentials: "include",
+            }).json<PostData[]>();
+        },
     });
     
     if(query.status === "pending") {
@@ -23,9 +37,24 @@ export default function ForYouFeed() {
         </p>
     }
 
-    return <ScrollArea className="h-[calc(100vh-300px)]">
+    if(!query.data?.length) {
+        const message = "Cette utilisateur n'a pas encore posté"
+
+        return (
+            <div className="text-center p-8 text-muted-foreground">
+                <p className="text-lg">
+                    {message}
+                </p>
+            </div>
+        );
+    }
+
+    return ( 
+        
+        
+        <ScrollArea className="h-[calc(100vh-300px)]">
         {query.data.map(post => (
             <Post key={post.id} post={post} />
         ))}
-    </ScrollArea>
+    </ScrollArea> );
 }

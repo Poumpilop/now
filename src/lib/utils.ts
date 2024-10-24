@@ -7,6 +7,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function formatJoinDate (from: Date) {
+  return formatDate(from, "MMMM yyyy", { locale: fr });
+};
+
 export function formatRelativeData(from: Date) {
   const currentDate = new Date();
 

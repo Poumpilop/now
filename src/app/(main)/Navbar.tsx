@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Bell, Home, MapPin, Menu, MessageCircle, Search, Settings, User } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import UserButton from "@/components/UserButton";
 import ThemeButton from "@/components/ThemeButton";
 import { redirect } from "next/navigation";
@@ -16,6 +16,7 @@ export default function Navbar() {
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="w-64">
+        <SheetTitle />
           <nav className="flex flex-col space-y-4">
             <Button variant="ghost" className="justify-start">
               <Home className="mr-2 h-4 w-4" />

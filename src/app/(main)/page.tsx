@@ -1,11 +1,12 @@
-import Post from "@/components/posts/editor/Post";
-import PostEditor from "@/components/posts/editor/PostEditor";
-import prisma from "@/lib/prisma";
-import Image from "next/image";
+"use client"
+import dynamic from "next/dynamic";
 import ForYouFeed from "./ForYouFeed";
 import RightSideBar from "./RightSideBar";
 
 export default function Home() {
+
+  // Import du composant sans SSR
+  const PostEditor = dynamic(() => import("@/components/posts/editor/PostEditor"), { ssr: false });
 
   return (
     <main className="flex-grow">

@@ -4,7 +4,7 @@ import { useSession } from "@/app/(main)/SessionProvider"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import UserAvatar from "./UserAvatar";
 import Link from "next/link";
-import { LogOutIcon, Monitor, Moon, Shield, Sun, UserIcon } from "lucide-react";
+import { LogOutIcon, Monitor, Moon, Settings, Shield, Sun, UserIcon } from "lucide-react";
 import { logout } from "@/app/(auth)/actions";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
@@ -50,7 +50,13 @@ export default function UserButton({className}: UserButtonProps) {
             <Link href={`/users/${user.displayName}`}>
                 <DropdownMenuItem>
                     <UserIcon className="mr-2 h-4 w-4"/>
-                    Profile
+                    Profil
+                </DropdownMenuItem>
+            </Link>
+            <Link href={`/users/${user.displayName}/settings`}>
+                <DropdownMenuItem>
+                    <Settings className="mr-2 h-4 w-4"/>
+                    Paramètres
                 </DropdownMenuItem>
             </Link>
             <DropdownMenuSeparator />

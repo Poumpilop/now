@@ -1,9 +1,6 @@
 import { validateRequest } from "@/auth";
-import { redirect, usePathname } from "next/navigation";
+import { redirect } from "next/navigation";
 import SessionProvider from "./SessionProvider";
-import Navbar from "./Navbar";
-import MenuBar from "./MenuBar";
-import HeaderUser from "./HeaderUser";
 import HeaderSwitcher from "@/components/HeaderSwitcher";
 
 export default async function Layout({

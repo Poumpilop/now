@@ -27,8 +27,8 @@ export default function LikeButton({ postId, initialState }: LikeButtonsProps) {
     const {mutate} = useMutation({
         mutationFn: () =>
             data.isLikedByUser
-        ? kyInstance.delete(`/api/posts/${postId}/likes`)
-        : kyInstance.post(`/api/posts/${postId}/likes`),
+        ? kyInstance.delete(`api/posts/${postId}/likes`)
+        : kyInstance.post(`api/posts/${postId}/likes`),
         onMutate: async () => {
             await queryClient.cancelQueries({ queryKey });
             
@@ -53,7 +53,7 @@ export default function LikeButton({ postId, initialState }: LikeButtonsProps) {
         },
     });
 
-    return <button>
+    return <>
         <Button
                 variant="link"
                 size="sm"
@@ -67,5 +67,5 @@ export default function LikeButton({ postId, initialState }: LikeButtonsProps) {
                 />
                 <span className="text-xs text-muted-foreground">{data.likes}</span>
                 </Button>
-    </button>
+    </>
 }

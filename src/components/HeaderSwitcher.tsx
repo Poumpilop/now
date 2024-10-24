@@ -8,5 +8,5 @@ export default function HeaderSwitcher() {
   const pathname = usePathname();
   
   // Choix du header en fonction de la route
-  return pathname.startsWith("/users") ? <HeaderUser /> : <Navbar />;
+  return pathname.endsWith("/settings") ? <HeaderUser /> : <Navbar />;
 }

@@ -91,6 +91,8 @@ export async function DELETE(req: Request, { params: { postId } }: { params: { p
                 postId,
             },
         });
+
+        return new Response();
     } catch (error) {
         return Response.json({error: "Erreur interne au serveur"}, { status: 500 });
     }

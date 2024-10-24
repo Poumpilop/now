@@ -27,6 +27,7 @@ export const createPostSchema = z.object({
 export const updateUserProfileSchema = z.object({
     displayName: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
     email: z.string().email("Adresse email invalide"),
+    bio: z.string().min(1, "Minimum 1 caractère")
   });
 
 export type UpdateUserProfileValues = z.infer<typeof updateUserProfileSchema>;
