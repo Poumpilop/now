@@ -22,7 +22,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "@/hooks/use-toast";
 import { TriangleAlert } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { reportsApi } from "@/lib/api/reportsApi";
 import type { Report } from '@/app/api/reports/types';
 import { io } from "socket.io-client";
